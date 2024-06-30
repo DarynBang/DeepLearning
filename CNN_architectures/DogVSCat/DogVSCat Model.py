@@ -59,8 +59,7 @@ class ResBlock(nn.Module):
 ## Model combines Residual blocks, batch normalization, dropout regularization
 class Network(nn.Module):
     def __init__(self,
-                 in_channels=3,
-                 num_classes=1) -> None:
+                 in_channels=3) -> None:
         super(Network, self).__init__()
         self.c1 = nn.Sequential(
             ConvBlock(in_channels=in_channels, out_channels=16, kernel_size=5, use_batch_norm=False, use_activation=True, stride=1, padding=1),
@@ -86,7 +85,7 @@ class Network(nn.Module):
 
         self.pool = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
 
-        self.fc1 = nn.Linear(in_features=396 * 6 * 6, out_features=num_classes)
+        self.fc1 = nn.Linear(in_features=396 * 6 * 6, out_features=1)
 
         self.dropout = nn.Dropout(0.25)
 
