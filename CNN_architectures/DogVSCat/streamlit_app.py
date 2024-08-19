@@ -8,6 +8,8 @@ import torch.nn.functional as f
 import matplotlib.pyplot as plt
 from albumentations.pytorch import ToTensorV2
 
+MODEL_PATH = r''
+
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
         super(ConvBlock, self).__init__()
@@ -72,7 +74,7 @@ class Network(nn.Module):
         probas = f.softmax(logits, dim=1)
         return logits, probas
 
-model = torch.load(r'C:\Users\steph\Desktop\Excel-CSV files\DogsVsCatsmodel.pth')
+model = torch.load(MODEL_PATH)
 model.eval()
 
 IMG_HEIGHT = 65
