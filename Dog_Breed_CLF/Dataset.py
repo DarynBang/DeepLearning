@@ -8,6 +8,7 @@ from torch.utils.data import Dataset
 from albumentations.pytorch import ToTensorV2
 import torch
 
+IMAGES_PATH = r""
 
 train_transforms = A.Compose([
         A.Resize(224, 224),
@@ -69,7 +70,7 @@ class DogBreedDataset(Dataset):
 
 
 if __name__ == '__main__':
-    images_path = r'C:\Users\Daryn Bang\Desktop\Dataset\dog_breed\images'
+    images_path = IMAGES_PATH
 
     transform = A.Compose([
         A.Resize(128, 128),
