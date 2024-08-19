@@ -7,6 +7,10 @@ from torch import Tensor
 from torch.cuda.amp import autocast, GradScaler
 import torch
 
+train_img_path = r''
+train_label_path = r''
+MODEL_PATH = r''
+
 class ConvBlock(nn.Module):
     def __init__(self,
                  in_channels: int,
@@ -128,9 +132,8 @@ device = torch.device(DEVICE)
 print(device)
 
 
-training_imgs = np.load(r'C:\Users\Daryn Bang\Desktop\Dataset\dogs-vs-cats\CatvsDogimgs.npy',
-                        allow_pickle=True)
-training_labels = np.load(r'C:\Users\Daryn Bang\Desktop\Dataset\dogs-vs-cats\CatvsDoglabels.npy',
+training_imgs = np.load(train_img_path, allow_pickle=True)
+training_labels = np.load(train_label_path,
                           allow_pickle=True)
 
 X_tensor = torch.tensor(training_imgs, dtype=torch.float32).permute(0, 3, 1, 2)
@@ -217,7 +220,7 @@ def train() -> None:
                          len(train_loader), loss))
 
         # Save model
-        save_checkpoint(model, r'C:\Users\Daryn Bang\Desktop\Dataset\dogs-vs-cats\DogVsCatModel.pth')
+        save_checkpoint(model, MODEL_PATH)
 
         if (num_epoch+1) % 2 == 0:
             model.eval()
@@ -239,7 +242,7 @@ def save_model(path) -> None:
 if __name__ == "__main__":
     train()
     test()
-    save_model(r'C:\Users\Daryn Bang\Desktop\Dataset\dogs-vs-cats\DogVsCatModel.pth')
+    save_model(MODEL_PATH)
 
 # Test accuracy: 86.5%
 # Train accuracy: 88.6%
