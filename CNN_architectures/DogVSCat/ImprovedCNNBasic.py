@@ -8,6 +8,9 @@ from tqdm import tqdm
 from torch import Tensor
 from utils import *
 
+SAVE_PATH = r''
+train_data_path = r''
+
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size, stride, padding):
         super(ConvBlock, self).__init__()
@@ -133,7 +136,7 @@ class Network(nn.Module):
 # print(probas)
 
 
-training_data = np.load(r'C:\Users\steph\Desktop\Excel-CSV files\dogs-vs-cats\training_data_test.npy',
+training_data = np.load(train_data_path,
                         allow_pickle=True)
 
 print(training_data[0])
@@ -209,7 +212,7 @@ def test() -> None:
         print('Test accuracy: %.2f%%' % (compute_accuracy(model, test_loader)))
 
 def save_model() -> None:
-    torch.save(model, r'C:\Users\steph\Desktop\Excel-CSV files\BasicCNNsmodel.pth')
+    torch.save(model, SAVE_PATH)
     print("Model saved complete")
 
 
