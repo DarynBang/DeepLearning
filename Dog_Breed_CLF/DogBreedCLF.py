@@ -8,14 +8,14 @@ from tqdm import tqdm
 from Dataset import *
 
 # Configuration and Set up
-MODEL_PATH = r'C:\Users\Daryn Bang\Desktop\Dataset\dog_breed\Pytorch_Model\DogBreedModel_2.pth'
-SAVE_PATH = r'C:\Users\Daryn Bang\Desktop\Dataset\dog_breed\Pytorch_Model\DogBreedModel_3.pth'
+MODEL_PATH = r''
+SAVE_PATH = r''
 num_epochs = 40
 batch_size = 16
 lr = 0.0005
 weight_decay = 0.0005
 NUM_CLASSES = 120
-
+ROOT_FILE = r''
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -149,7 +149,7 @@ def save_model(path) -> None:
 
 
 if __name__ == '__main__':
-    root_file = r'C:\Users\Daryn Bang\Desktop\Dataset\dog_breed\images'
+    root_file = ROOT_FILE
 
     dataset = DogBreedDataset(root_file, train=True, transform=train_transforms)
     print(f"Dataset size: {len(dataset)}")
